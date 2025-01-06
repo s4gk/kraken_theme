@@ -2,6 +2,10 @@
 
 source colours.sh
 
+# --- Variables ---
+
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+
 # --- Functions ---
 
 # --- CTRL + C ---
@@ -45,9 +49,9 @@ install_bspwm () {
 
     rm -rf ~/.config/bspwm ~/.config/sxhkd ~/.config/wallpapers
     mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/wallpapers
-    cp -r /bspwm/* ~/.config/bspwm
-    cp -r /sxhkd/* ~/.config/sxhkd
-    cp -r /wallpapers/* ~/.config/wallapapers
+    cp -r "$SCRIPT_DIR/bspwm/"* ~/.config/bspwm
+    cp -r "$SCRIPT_DIR/sxhkd/"* ~/.config/sxhkd
+    cp -r "$SCRIPT_DIR/wallpapers/"* ~/.config/wallapapers
 
 }
 
@@ -65,10 +69,10 @@ install_polybar () {
 
     rm -rf ~/.config/polybar ~/.config/picom ~/.config/rofi
     mkdir -p ~/.config/polybar ~/.config/picom ~/.config/rofi ~/.local/share/fonts
-    cp -r /polybar/* ~/.config/polybar
-    cp -r /picom/* ~/.config/picom
-    cp -r /rofi/* ~/.config/rofi
-    cp -r /fonts/* ~/.local/share/fonts
+    cp -r "$SCRIPT_DIR/polybar/"* ~/.config/polybar
+    cp -r "$SCRIPT_DIR/picom/"* ~/.config/picom
+    cp -r "$SCRIPT_DIR/rofi/"* ~/.config/rofi
+    cp -r "$SCRIPT_DIR/fonts/"* ~/.local/share/fonts
 
     fc-cache -fv
 
@@ -103,13 +107,10 @@ install_custom_terminal () {
     # Configurating Kitty
     
     rm -rf ~/.config/kitty
-    mkdir -p /.config/kitty 
-    cp -r /kitty/* ~/.config/kitty
+    mkdir -p ~/.config/kitty
+    cp -r "$SCRIPT_DIR/fonts/"* ~/.local/share/fonts
+    cp -r "$SCRIPT_DIR/kitty/"* ~/.config/kitty
     
-    # Configurating zsh & p10k
-
-    install_zsh_p10k
-
 }
 
 # -----------------------------------------
