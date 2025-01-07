@@ -83,7 +83,7 @@ install_polybar () {
 install_zsh_p10k () {
 
     echo "Installing zsh and powerlevel10k..."
-    sudo apt install zsh -y
+    sudo apt install zsh -y > /dev/null 2>&1
     echo "Changing default shell to zsh..."
     chsh -s $(which zsh)
 
@@ -108,7 +108,7 @@ install_custom_terminal () {
 
     echo "Installing Kitty & zsh & powerlevel10k..."
     echo ""
-    sudo apt install kitty zsh
+    sudo apt install kitty zsh > /dev/null 2>&1
     echo ""
 
     # Configurating Kitty
@@ -150,9 +150,11 @@ elif [ "$option" -eq 2 ]; then
 elif [ "$option" -eq 3 ]; then
     install_custom_terminal
 elif [ "$option" -eq 4 ]; then
-    echo "Option 4"
+    install_bspwm
+    install_polybar
+    install_custom_terminal
 elif [ "$option" -eq 5 ]; then
-    echo "Option 5"
+    ctrl_c
 else
     echo "$option Not an option"
 fi
