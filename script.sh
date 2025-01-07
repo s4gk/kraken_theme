@@ -90,6 +90,13 @@ install_zsh_p10k () {
     echo "Installing Powerlevel10k..."
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.zsh/powerlevel10k
     echo 'source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
+
+    cp -r "$SCRIPT_DIR/terminal/.zshrc" ~/.zshrc
+    cp -r "$SCRIPT_DIR/terminal/.p10k.zsh" ~/.p10k.zsh  
+
+    rm -r ~/powerlevel10k
+    mkdiir ~/powerlevel10k
+    cp -r "$SCRIPT_DIR/powerlevel10k/"* ~/powerlevel10k
     
     echo "Installation complete! Restart your terminal to apply changes."
 
@@ -107,10 +114,12 @@ install_custom_terminal () {
     # Configurating Kitty
     
     rm -rf ~/.config/kitty
-    mkdir -p ~/.config/kitty
+    mkdir -p ~/.config/kitty ~/.local/share/fonts
     cp -r "$SCRIPT_DIR/fonts/"* ~/.local/share/fonts
     cp -r "$SCRIPT_DIR/kitty/"* ~/.config/kitty
-    
+
+    install_zsh_p10k
+        
 }
 
 # -----------------------------------------
